@@ -75,7 +75,8 @@ object GitHubTest : BuildType({
             edition = PowerShellStep.Edition.Core
             scriptMode = script {
                 content = """
-                Get-GitHubPullRequest -Owner WSStudios -RepositoryName tdp1 -PullRequest 5736 -AccessToken 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
+                ${'$'}ErrorActionPreference = "Stop"
+                Get-GitHubPullRequest -Owner WSStudios -RepositoryName tdp1 -PullRequest 5736 -AccessToken ${'$'}(ConvertTo-SecureString -AsPlainText -Force -String "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")
                 """.trimIndent()
             }
         }
