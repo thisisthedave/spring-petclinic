@@ -73,13 +73,10 @@ object GitHubTest : BuildType({
         powerShell {
             name = "GetPullRequest"
             edition = PowerShellStep.Edition.Core
-            scriptMode = script {
-                content = """
-                ${'$'}ErrorActionPreference = "Stop"
-                Write-Host %
-                Get-GitHubPullRequest -Owner WSStudios -RepositoryName tdp1 -Number 5736 -Token ${'$'}(ConvertTo-SecureString -AsPlainText -Force -String "%GitHubToken")
-                """.trimIndent()
+            scriptMode = file {
+                path = "Test-GitHub.ps1"
             }
+            param("jetbrains_powershell_scriptArguments", "-TeamCityToken %GitHubToken%")
         }
     }
 })
