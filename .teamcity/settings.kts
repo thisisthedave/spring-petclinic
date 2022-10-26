@@ -76,7 +76,7 @@ object GitHubTest : BuildType({
             scriptMode = script {
                 content = """
                 ${'$'}ErrorActionPreference = "Stop"
-                Get-GitHubPullRequest -Owner WSStudios -RepositoryName tdp1 -PullRequest 5736 -AccessToken ${'$'}(ConvertTo-SecureString -AsPlainText -Force -String "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")
+                Get-GitHubPullRequest -Owner WSStudios -RepositoryName tdp1 -Number 5736 -Token ${'$'}(ConvertTo-SecureString -AsPlainText -Force -String "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")
                 """.trimIndent()
             }
         }
