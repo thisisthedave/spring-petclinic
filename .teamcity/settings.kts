@@ -1,5 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.PowerShellStep
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.maven
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.powerShell
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 
 /*
@@ -28,11 +30,11 @@ version = "2021.2"
 
 project {
 
-    buildType(Build)
+    buildType(BuildPetClinic)
 }
 
-object Build : BuildType({
-    name = "Build"
+object BuildPetClinic : BuildType({
+    name = "Build-PetClinic"
 
     vcs {
         root(DslContext.settingsRoot)
@@ -47,6 +49,35 @@ object Build : BuildType({
 
     triggers {
         vcs {
+        }
+    }
+})
+
+object GitHubTest : BuildType({
+    name = "GitHubTest"
+
+    params {
+        password("GitHubToken", "credentialsJSON:7e037c7f-d428-47ee-92dd-790365c8b5be")
+    }
+
+    vcs {
+        root(DslContext.settingsRoot)
+    }
+
+    triggers {
+        vcs {
+        }
+    }
+
+    steps {
+        powerShell {
+            name = "GetPullRequest"
+            edition = PowerShellStep.Edition.Core
+            scriptMode = script {
+                content = """
+                Get-GitHubPullRequest -Owner WSStudios -RepositoryName tdp1 -PullRequest 5736 -AccessToken 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
+                """.trimIndent()
+            }
         }
     }
 })
