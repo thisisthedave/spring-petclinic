@@ -57,7 +57,7 @@ object GitHubTest : BuildType({
     name = "GitHubTest"
 
     params {
-        password("GitHubToken", "credentialsJSON:7e037c7f-d428-47ee-92dd-790365c8b5be")
+        password("GitHubToken", "credentialsJSON:8565735a-8b84-4926-a24c-b1fca4a9d060")
     }
 
     vcs {
@@ -77,7 +77,7 @@ object GitHubTest : BuildType({
                 content = """
                 ${'$'}ErrorActionPreference = "Stop"
                 Write-Host %
-                Get-GitHubPullRequest -Owner WSStudios -RepositoryName tdp1 -Number 5736 -Token ${'$'}(ConvertTo-SecureString -AsPlainText -Force -String "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")
+                Get-GitHubPullRequest -Owner WSStudios -RepositoryName tdp1 -Number 5736 -Token ${'$'}(ConvertTo-SecureString -AsPlainText -Force -String "%GitHubToken")
                 """.trimIndent()
             }
         }
