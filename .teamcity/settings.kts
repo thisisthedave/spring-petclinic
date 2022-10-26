@@ -4,6 +4,8 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.powerShell
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 
+val kGithubToken = "credentialsJSON:8565735a-8b84-4926-a24c-b1fca4a9d060"
+
 /*
 The settings script is an entry point for defining a TeamCity
 project hierarchy. The script should contain a single call to the
@@ -27,8 +29,6 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 */
 
 version = "2021.2"
-
-private val kGithubToken = "credentialsJSON:8565735a-8b84-4926-a24c-b1fca4a9d060"
 
 project {
     buildType(GitHubTest)
