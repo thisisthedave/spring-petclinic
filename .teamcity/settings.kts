@@ -28,6 +28,8 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 
 version = "2021.2"
 
+private val kGithubToken = "credentialsJSON:8565735a-8b84-4926-a24c-b1fca4a9d060"
+
 project {
     buildType(GitHubTest)
     buildType(BuildPetClinic)
@@ -57,7 +59,7 @@ object GitHubTest : BuildType({
     name = "GitHubTest"
 
     params {
-        password("GitHubToken", "credentialsJSON:8565735a-8b84-4926-a24c-b1fca4a9d060")
+        password("GitHubToken", kGithubToken)
     }
 
     vcs {
